@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý Người Dùng | StudyMate Admin</title>
+    <link rel="stylesheet" href="/clients/style/user.css">
+    <link rel="shortcut icon" href="/clients/assets/icon/istockphoto-2211189760-1024x1024.jpg" type="image/x-icon">
+  </head>
+  <body>
+    <div class="admin-container">
+      <aside class="sidebar">
+        <h2>StudyMate Admin</h2>
+        <nav>
+          <a href="admin.html">Menu</a>
+          <a href="#">Bài tập</a>
+          <a href="user.html" class="active">Người dùng</a>
+          <a href="dubaothoitiet.html">Dự báo thời tiết</a>
+          <a href="settings.html">Cài đặt</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <header>
+          <h1>Quản lý Người Dùng</h1>
+          <button onclick="signOut()">Đăng xuất</button>
+        </header>
+
+        <section class="user-form">
+          <h2>Thêm Người Dùng</h2>
+          <input type="text" id="username" placeholder="Tên người dùng">
+          <input type="email" id="useremail" placeholder="Email người dùng">
+          <select id="userrole">
+            <option value="user">Người dùng</option>
+            <option value="admin">Quản trị viên</option>
+          </select>
+          <button onclick="addUser()">Thêm</button>
+        </section>
+
+        <section class="user-list">
+          <h2>Danh sách Người Dùng</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Vai trò</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="user-table-body">
+             
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+
+
+    
+    <script src="/clients/script/user.js"></script>
+  </body>
+</html>

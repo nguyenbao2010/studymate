@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quản Lý Thời Gian Học Tập</title>
+  <link rel="stylesheet" href="/clients/style/quanlithoigian.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">📚 StudyMate</div>
+      <ul class="nav-links">
+        <li><a href="index.html">🏠 Trang chủ</a></li>
+        <li><a href="quanlithoigian.html" class="active">📅 Lịch học</a></li>
+        <li><a href="baitap.html">📖 Bài tập</a></li>
+        <li><a href="settings.html">⚙ Cài đặt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <h1>Quản Lý Thời Gian Học Tập</h1>
+    <form id="study-form">
+      <input type="text" id="subject" placeholder="Môn học" required />
+      <input type="date" id="date" required />
+      <input type="time" id="start-time" required />
+      <input type="time" id="end-time" required />
+      <button type="submit">Thêm lịch</button>
+    </form>
+
+    <div id="study-list" class="study-list"></div>
+  </div>
+
+  <script src="/clients/script/quanlithoigian.js"></script>
+</body>
+</html>

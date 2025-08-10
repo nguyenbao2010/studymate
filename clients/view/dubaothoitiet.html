@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Oracle</title>
+    <link rel="stylesheet" href="/clients/style/dubaothoitiet.css">
+    <link rel="shortcut icon" href="/clients/assets/icon/istockphoto-2211189760-1024x1024.jpg" type="image/x-icon">
+</head>
+<body>
+    <canvas id="matrix"></canvas>
+
+    <div class="weather-card">
+        <h1>Dự báo thời tiết</h1>
+        <input type="text" id="cityInput" placeholder="Nhập thành phố" />
+        <button onclick="getWeather()">Nhập</button>
+        <div id="weatherResult"></div>
+    </div>
+
+    <script src="/clients/script/dubaothoitiet.js"></script>
+</body>
+</html>

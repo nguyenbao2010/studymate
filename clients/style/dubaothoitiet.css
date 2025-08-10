@@ -1,0 +1,120 @@
+/* Reset everything */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+}
+
+/* Background Matrix effect */
+canvas#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15; /* Giảm chói */
+}
+
+/* Main Weather Card */
+.weather-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.75);
+    color: #00ff66;
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 300px;
+    margin: 15vh auto;
+    box-shadow: 0 0 30px rgba(0, 255, 102, 0.8);
+    text-align: center;
+    border: 2px solid #00ff66;
+    animation: cardPulse 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes cardPulse {
+    0% { box-shadow: 0 0 20px rgba(0, 255, 102, 0.5); }
+    100% { box-shadow: 0 0 50px rgba(0, 255, 102, 0.8); }
+}
+
+.weather-card h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #00ff99;
+    text-shadow: 0 0 15px #00ff99, 0 0 25px #00ff99;
+}
+
+/* Input */
+input[type="text"] {
+    padding: 12px;
+    width: 80%;
+    font-size: 1.4rem;
+    background-color: rgba(0, 255, 102, 0.05);
+    border: 2px solid #00ff66;
+    color: #00ff66;
+    border-radius: 8px;
+    outline: none;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    background-color: rgba(0, 255, 102, 0.15);
+    box-shadow: 0 0 10px #00ff66;
+}
+
+/* Button */
+button {
+    padding: 12px 28px;
+    font-size: 1.3rem;
+    background-color: #00ff66;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px #00ff66;
+}
+
+button:hover {
+    background-color: #00ffaa;
+    box-shadow: 0 0 40px #00ffaa;
+    transform: scale(1.05);
+}
+
+/* Result Section */
+#weatherResult {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    color: #00ffaa;
+    text-shadow: 0 0 10px #00ffaa;
+}
+
+/* Body background */
+body {
+    background-color: black;
+    color: white;
+    overflow: hidden;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .weather-card {
+        width: 90%;
+        padding: 20px;
+    }
+
+    input[type="text"], button {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+}

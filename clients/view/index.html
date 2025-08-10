@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyMate - Trang Chủ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/clients/style/index.css" />
+    <link rel="shortcut icon" href="/clients/assets/icon/istockphoto-2211189760-1024x1024.jpg" type="image/x-icon">
+  </head>
+  <body class="flex flex-col">
+ 
+  <nav class="bg-white shadow-md py-4 px-6 flex items-center justify-between">
+    <div class="text-xl font-bold text-purple-700">📚 StudyMate</div>
+    <ul class="flex gap-6 text-gray-700 font-semibold">
+      <li><a href="index.html" class="hover:text-purple-500 transition">Trang Chủ</a></li>
+      <li><a href="quanlithoigian.html" class="hover:text-purple-500 transition">Quản lí thời gian học tập</a></li>
+      <li><a href="baitap.html" class="hover:text-purple-500 transition">Bài Tập</a></li>
+      <li><a href="#" class="hover:text-purple-500 transition">Tài Khoản</a></li>
+      <li><a href="admin.html" class="hover:text-purple-500 transition">Quản trị viên</a></li>
+      <li><a href="dubaothoitiet.html" class="hover:text-purple-500 transition">dự báo thời tiết</a></li>
+    </ul>
+    <button onclick="signOut()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+      🚪 Đăng Xuất
+    </button>
+  </nav>
+
+  
+  <main class="flex-1 flex flex-col items-center justify-center text-center p-8">
+    <img src="https://cdn-icons-png.flaticon.com/512/2190/2190552.png" alt="Welcome" class="w-32 h-32 mb-4" />
+    <h1 class="text-3xl font-bold text-purple-800 mb-2">Chào mừng đến với StudyMate!</h1>
+    <p class="text-lg text-gray-700">Hãy bắt đầu học tập thật vui vẻ và hiệu quả nhé 💡📖</p>
+
+    <!-- Nút chuyển chế độ sáng tối siêu đẳng cấp -->
+    <button id="theme-toggle" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+      🌙 Chuyển sang chế độ tối
+    </button>
+  </main>
+
+  <script type="module" src="/clients/script/index.js"></script>
+  <script type="module" src="/clients/script/auth.js"></script>
+</body>

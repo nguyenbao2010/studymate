@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6fc;
+}
+
+.admin-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: #2f3e9e;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 30px;
+}
+
+.sidebar li {
+  margin-bottom: 16px;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+  background-color: #ffffff;
+  border-left: 1px solid #ddd;
+}
+
+.content h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #2f3e9e;
+}

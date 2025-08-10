@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quản Lý Khóa Học</title>
+  <link rel="stylesheet" href="/clients/style/quanlisanpham.css" />
+  <link rel="shortcut icon" href="/clients/assets/icon/istockphoto-2211189760-1024x1024.jpg" type="image/x-icon" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <h2 class="logo">StudyMate</h2>
+      <ul class="nav-links">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="baitap.html">Khoá học</a></li>
+        <li><a href="settings.html">Cài đặt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Quản lý Khóa học</h1>
+    <form id="course-form">
+      <input type="text" id="course-name" placeholder="Tên khóa học" required />
+      <input type="number" id="course-price" placeholder="Giá (VNĐ)" required />
+      <input type="file" id="course-image" accept="image/*" required />
+      <input type="button" id="submit-btn" value="Thêm khóa học" />
+    </form>
+
+    <div id="course-list" class="course-list"></div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script> 
+
+  <script  src="/clients/script/firebase-config.js"></script>
+  <script type="module" src="/clients/script/quanlisanpham.js"></script>
+</body>
+</html>
