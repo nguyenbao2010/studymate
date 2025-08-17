@@ -1,5 +1,5 @@
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -8,7 +8,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 import {
   getDatabase,
@@ -19,7 +19,7 @@ import {
   update,
   remove,
   onValue
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 // ✅ Firebase Config
 const firebaseConfig = {
@@ -50,18 +50,21 @@ function showMessage(message, type = 'info') {
 onAuthStateChanged(auth, (user) => {
   const path = window.location.pathname;
   if (user) {
-    if (path === "/login.html" || path === "/") {
+    if (path.includes("login.html") || path === "/") {
       window.location.href = "index.html";
     }
     // Hiển thị thông tin realtime
-    onValue(ref(database, 'users/' + user.uid), (snapshot) => {
-      if (snapshot.exists()) {
-        document.getElementById("user-info").innerText =
-          snapshot.val().displayName || snapshot.val().email;
-      }
-    });
+    const userInfoElement = document.getElementById("user-info");
+    if (userInfoElement) {
+      onValue(ref(database, 'users/' + user.uid), (snapshot) => {
+        if (snapshot.exists()) {
+          userInfoElement.innerText =
+            snapshot.val().displayName || snapshot.val().email;
+        }
+      });
+    }
   } else {
-    if (path.includes("index.html")) {
+    if (path.includes("index.html") || (!path.includes("login.html") && path !== "/")) {
       window.location.href = "login.html";
     }
   }
