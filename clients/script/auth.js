@@ -7,7 +7,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  updateProfile
+  updateProfile,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 import {
@@ -15,10 +15,9 @@ import {
   ref,
   set,
   update,
-  onValue
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-
+// 🔥 Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyBsZvKDxVeeCc_abu9lpX7V7pcq7OqeAJQ",
   authDomain: "studymate-cae77.firebaseapp.com",
@@ -27,15 +26,16 @@ const firebaseConfig = {
   storageBucket: "studymate-cae77.firebasestorage.app",
   messagingSenderId: "499041011253",
   appId: "1:499041011253:web:daf2f327b5b90c399d137c",
-  measurementId: "G-1TL6MQYLYF"
+  measurementId: "G-1TL6MQYLYF",
 };
 
-
+// 🚀 Khởi tạo Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 const googleProvider = new GoogleAuthProvider();
 
+// ✅ Hàm hiển thị thông báo
 function showMessage(message, type = "info") {
   const msgBox = document.getElementById("message");
   if (msgBox) {
@@ -48,11 +48,20 @@ function showMessage(message, type = "info") {
 // ✅ Theo dõi trạng thái đăng nhập
 onAuthStateChanged(auth, (user) => {
   const path = window.location.pathname;
+  const navbarUser = document.getElementById("navbar-username");
+
   if (user) {
+    // Nếu đang ở login thì chuyển sang index
     if (path.includes("login.html") || path === "/") {
       window.location.href = "index.html";
     }
+
+    // Hiển thị tên user trên navbar
+    if (navbarUser) {
+      navbarUser.innerText = `👋 Xin chào, ${user.displayName || user.email}`;
+    }
   } else {
+    // Nếu chưa login mà ở index thì đẩy về login
     if (path.includes("index.html") || (!path.includes("login.html") && path !== "/")) {
       window.location.href = "login.html";
     }
