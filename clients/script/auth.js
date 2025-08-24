@@ -1,4 +1,3 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
   getAuth,
@@ -8,20 +7,18 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  updateProfile
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 import {
   getDatabase,
   ref,
   set,
-  get,
-  child,
   update,
-  remove,
   onValue
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-// ✅ Firebase Config
+
 const firebaseConfig = {
   apiKey: "AIzaSyBsZvKDxVeeCc_abu9lpX7V7pcq7OqeAJQ",
   authDomain: "studymate-cae77.firebaseapp.com",
@@ -33,17 +30,19 @@ const firebaseConfig = {
   measurementId: "G-1TL6MQYLYF"
 };
 
-// Khởi tạo Firebase
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 const googleProvider = new GoogleAuthProvider();
 
-function showMessage(message, type = 'info') {
+function showMessage(message, type = "info") {
   const msgBox = document.getElementById("message");
-  msgBox.innerText = message;
-  msgBox.style.color = type === 'error' ? 'red' : 'green';
-  msgBox.style.fontWeight = 'bold';
+  if (msgBox) {
+    msgBox.innerText = message;
+    msgBox.style.color = type === "error" ? "red" : "green";
+    msgBox.style.fontWeight = "bold";
+  }
 }
 
 // ✅ Theo dõi trạng thái đăng nhập
@@ -52,16 +51,6 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     if (path.includes("login.html") || path === "/") {
       window.location.href = "index.html";
-    }
-    // Hiển thị thông tin realtime
-    const userInfoElement = document.getElementById("user-info");
-    if (userInfoElement) {
-      onValue(ref(database, 'users/' + user.uid), (snapshot) => {
-        if (snapshot.exists()) {
-          userInfoElement.innerText =
-            snapshot.val().displayName || snapshot.val().email;
-        }
-      });
     }
   } else {
     if (path.includes("index.html") || (!path.includes("login.html") && path !== "/")) {
@@ -74,21 +63,33 @@ onAuthStateChanged(auth, (user) => {
 window.signUp = async function () {
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
+  const username = document.getElementById("username").value.trim();
+
+  if (!username) {
+    showMessage("❌ Vui lòng nhập tên hiển thị!", "error");
+    return;
+  }
 
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
+    // Cập nhật tên hiển thị vào Firebase Auth
+    await updateProfile(user, {
+      displayName: username,
+    });
+
     // Lưu thông tin vào Realtime Database
-    await set(ref(database, 'users/' + user.uid), {
+    await set(ref(database, "users/" + user.uid), {
       email: user.email,
-      displayName: user.displayName || "",
-      createdAt: new Date().toISOString()
+      displayName: username,
+      createdAt: new Date().toISOString(),
     });
 
     showMessage("✅ Đăng ký thành công!");
+    window.location.href = "index.html";
   } catch (error) {
-    showMessage("❌ " + error.message, 'error');
+    showMessage("❌ " + error.message, "error");
   }
 };
 
@@ -99,17 +100,17 @@ window.signInWithGoogle = async function () {
     const user = result.user;
 
     // Lưu hoặc cập nhật thông tin
-    await update(ref(database, 'users/' + user.uid), {
+    await update(ref(database, "users/" + user.uid), {
       email: user.email,
       displayName: user.displayName,
-      lastLogin: new Date().toISOString()
+      lastLogin: new Date().toISOString(),
     });
 
     showMessage(`✅ Chào mừng, ${user.displayName}!`);
     window.location.href = "index.html";
   } catch (error) {
     console.error("❌ Google login error:", error);
-    showMessage("❌ " + error.message, 'error');
+    showMessage("❌ " + error.message, "error");
   }
 };
 
@@ -123,14 +124,14 @@ window.signIn = async function () {
     const user = userCredential.user;
 
     // Cập nhật thời gian login
-    await update(ref(database, 'users/' + user.uid), {
-      lastLogin: new Date().toISOString()
+    await update(ref(database, "users/" + user.uid), {
+      lastLogin: new Date().toISOString(),
     });
 
     showMessage("✅ Đăng nhập thành công!");
     window.location.href = "index.html";
   } catch (error) {
-    showMessage("❌ " + error.message, 'error');
+    showMessage("❌ " + error.message, "error");
   }
 };
 
@@ -141,6 +142,6 @@ window.signOut = async function () {
     showMessage("✅ Đã đăng xuất!");
     setTimeout(() => location.reload(), 1000);
   } catch (error) {
-    showMessage("❌ " + error.message, 'error');
+    showMessage("❌ " + error.message, "error");
   }
 };

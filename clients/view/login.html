@@ -12,7 +12,13 @@
       <div class="box">
         <h2>Đăng Ký / Đăng Nhập</h2>
 
-        
+        <label for="username" class="sr-only">Tên hiển thị</label>
+        <input
+          type="text"
+          id="username"
+          placeholder="Nhập tên hiển thị (chỉ dùng khi đăng ký)"
+        />
+
         <label for="email" class="sr-only">Email</label>
         <input
           type="email"
@@ -22,7 +28,6 @@
           autofocus
         />
 
-      
         <label for="password" class="sr-only">Mật khẩu</label>
         <input
           type="password"
@@ -37,16 +42,16 @@
           Đăng Nhập với Google
         </button>
 
-       
         <p id="message"></p>
       </div>
     </div>
 
-   
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script> 
-     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script> 
+  
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
 
-    <script type="module" src="/clients/script/firebase-config.js"></script>
+    <script src="/clients/script/firebase-config.js"></script>
     <script type="module" src="/clients/script/auth.js"></script>
   </body>
 </html>
